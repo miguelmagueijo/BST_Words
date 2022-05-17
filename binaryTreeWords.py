@@ -135,7 +135,7 @@ class BinaryTree:
 
     def __searchWord(self, node: Node, word: str) -> Node:
         if node is None:
-            return None
+            return
 
         if word == node.word:
             return node
@@ -147,6 +147,32 @@ class BinaryTree:
 
 
 
+    def getNodesStartWith(self, term: str, node: Node = None) -> list:
+        if node is None:
+            node = self.root
+        
+        nodesFound = []
+        self.__searchStartWith(node, term, nodesFound)
+        return nodesFound
+
+
+
+    def __searchStartWith(self, node: Node, term: str, nodesFound: list) -> Node:
+        if node is None:
+            return
+
+        if node.word.startswith(term):
+            nodesFound.append(node.word)
+            self.__searchStartWith(node.right, term, nodesFound)
+            self.__searchStartWith(node.left, term, nodesFound)
+        else:
+            if term > node.word:
+                self.__searchStartWith(node.right, term, nodesFound)
+            else:
+                self.__searchStartWith(node.left, term, nodesFound)
+    
+
+    
     def printTree(self, node: Node, level: int = 0) -> None:
         if node is not None:
             self.printTree(node.right, level + 1)
@@ -214,7 +240,7 @@ if __name__ == "__main__":
     ab.remove("teste")
     ab.printTree(ab.root)
     print(ab.hasWord("ana"))
-    
+    print(ab.getNodesStartWith(""))
     exit()
     print(ab.totalNodes)
     ab.printNodeOrder(ab.root)
