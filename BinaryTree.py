@@ -1,3 +1,5 @@
+import time
+
 from io import TextIOWrapper
 from Node import Node
 
