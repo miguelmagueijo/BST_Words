@@ -97,6 +97,8 @@ class BinaryTree:
 
         return node
 
+
+
     def getNodeOfWord(self, word: str, node: Node = None):
         if node is None:
             node = self.root
