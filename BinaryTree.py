@@ -156,20 +156,36 @@ class BinaryTree:
                 self.__searchStartWith(node.left, term, nodesFound)
     
 
-    
-    def printTree(self, node: Node, level: int = 0) -> None:
+
+    def printTree(self, node: Node = None) -> None:
+        if node is None:
+            node = self.root
+
+        self.__printTree(node)
+
+
+
+    def __printTree(self, node: Node, level: int = 0) -> None:
         if node is not None:
-            self.printTree(node.right, level + 1)
+            self.__printTree(node.right, level + 1)
             print(f"{ ' ' * 4 * level }-> { node.word } | { node.total }")
-            self.printTree(node.left, level + 1)
+            self.__printTree(node.left, level + 1)
 
 
 
-    def printNodeOrder(self, node: Node) -> None:
+    def printNodeOrder(self, node: Node = None) -> None:
+        if node is None:
+            node = self.root
+
+        self.__printNodeOrder(self.root)
+
+
+
+    def __printNodeOrder(self, node: Node) -> None:
         if node is not None:
-            self.printNodeOrder(node.left)
+            self.__printNodeOrder(node.left)
             print(node.word)
-            self.printNodeOrder(node.right)
+            self.__printNodeOrder(node.right)
 
 
 
