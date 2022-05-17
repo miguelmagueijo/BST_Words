@@ -48,7 +48,7 @@ class BinaryTree:
 
 
 
-    def __insertWord(self, node: Node, word: str, parent: Node = None):
+    def __insertWord(self, node: Node, word: str, parent: Node = None) -> Node:
         if node is None:
             self.totalNodes += 1
             newNode = Node(word)
@@ -67,12 +67,12 @@ class BinaryTree:
 
 
 
-    def remove(self, word: str):
+    def remove(self, word: str) -> None:
         self.__remove(self.root, word)
 
 
 
-    def __remove(self, node: Node, word: str):
+    def __remove(self, node: Node, word: str) -> Node:
         if node is None:
             return None
 
@@ -85,14 +85,14 @@ class BinaryTree:
                 temp = node.right
                 node = None
                 return temp
-    
+
             elif node.right is None:
                 temp = node.left
                 node = None
                 return temp
-    
+
             temp = self.getMin(node.right)
-    
+
             node.word = temp.word
     
             node.right = self.__remove(node.right, temp.word)
