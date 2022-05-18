@@ -1,5 +1,5 @@
 import os
-import time
+import string
 
 from Node import Node
 from BinaryTree import BinaryTree
@@ -12,6 +12,7 @@ def insertFromFile(tree: BinaryTree):
         print(f"Working Directory: {os.getcwd()}")
         print("Input example: ../../example.txt")
         print("Files must be \".txt\"")
+        print("All characters will be transformed to lowercase.")
         filename = input("\nFilename # ")
 
         if len(filename) == 0:
@@ -32,6 +33,25 @@ def insertFromFile(tree: BinaryTree):
             return
         except FileNotFoundError as e:
             print(f"\n\n\n\n\nWARNING - No file found, given filename: {filename}")
+
+
+
+def insertFromInput(tree: BinaryTree):
+    while True:
+        print("\nInput words to add to BST. (all characters will be transformed to lowercase)")
+        phrase = input("\nText # ").strip().lower()
+        
+        if len(phrase) == 0:
+            return
+        
+        table = str.maketrans(dict.fromkeys(string.punctuation))
+        phrase = phrase.translate(table)
+        
+        for w in phrase.split(" "):
+            tree.insertWord(w)
+        
+        print("\nText inserted with success.\n\n")
+
 
 
 
@@ -100,6 +120,8 @@ if __name__ == "__main__":
 
         if op == 1:
             insertFromFile(tree)
+        elif op == 2:
+            insertFromInput(tree)
         elif op == 3:
             searchWord(tree)
         elif op == 4:
