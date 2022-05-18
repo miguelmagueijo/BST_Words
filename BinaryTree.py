@@ -146,7 +146,7 @@ class BinaryTree:
             return
 
         if node.word.startswith(term):
-            nodesFound.append(node.word)
+            nodesFound.append(node)
             self.__searchStartWith(node.right, term, nodesFound)
             self.__searchStartWith(node.left, term, nodesFound)
         else:
