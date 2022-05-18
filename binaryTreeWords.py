@@ -3,6 +3,7 @@ import string
 
 from Node import Node
 from BinaryTree import BinaryTree
+from DSW import DSW
 
 
 
@@ -102,8 +103,8 @@ if __name__ == "__main__":
         print("2 - Insert words from input;")
         print("3 - Find word from input;")
         print("4 - Find words that start with input;")
-        print("5 - Balance BST (magical algorithm);")
-        print("6 - Balance BST (DSW - Day Stout Warren);")
+        print("5 - Balance BST (Generic algorithm from GfG);")
+        print("6 - Balance BST (DSW - Day Stout Warren from GfG);")
         print("7 - Print BST;")
         print("8 - Create file of BST;")
         print("0 - Exit;")
@@ -126,6 +127,12 @@ if __name__ == "__main__":
             searchWord(tree)
         elif op == 4:
             searchStartWith(tree)
+        elif op == 5:
+            continue
+        elif op == 6:
+            result = DSW().balance(tree)
+            if result:
+                print("Tree successfully balanced with DSW Algorithm")
         elif op == 7:
             tree.printTree()
         elif op == 8:
