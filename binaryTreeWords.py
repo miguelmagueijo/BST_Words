@@ -35,6 +35,41 @@ def insertFromFile(tree: BinaryTree):
 
 
 
+def searchWord(tree: BinaryTree):
+    while True:
+        print("\nWhat is the word you are searching for?")
+        word = input("Word # ").lower()
+        
+        if len(word) == 0:
+            return
+        
+        node = tree.getNodeOfWord(word)
+        if node is None:
+            print(f"\n\n\n\"{word}\" does not exist on BST.")
+        else:
+            print(f"\n\n\n\"{word}\" found! {node}")
+
+
+
+def searchStartWith(tree: BinaryTree):
+    while True:
+        print("\nWhat is the term are searching for?")
+        word = input("Word # ").lower()
+        
+        if len(word) == 0:
+            return
+        
+        nodesFound = tree.getNodesStartWith(word)
+        if len(nodesFound) == 0:
+            print(f"\n\n\nFound 0 words that start with \"{word}\".")
+        else:
+            print("\n\n")
+            for w in nodesFound:
+                print(w)
+            print(f"Found {len(nodesFound)} words that start with \"{word}\".")
+
+
+
 
 
 if __name__ == "__main__":
@@ -65,12 +100,11 @@ if __name__ == "__main__":
 
         if op == 1:
             insertFromFile(tree)
-            continue
-
-        if op == 7:
+        elif op == 3:
+            searchWord(tree)
+        elif op == 4:
+            searchStartWith(tree)
+        elif op == 7:
             tree.printTree()
-            continue
-        
-        if op == 8:
+        elif op == 8:
             tree.writeFile()
-            continue
